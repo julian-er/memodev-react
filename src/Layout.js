@@ -14,13 +14,13 @@ class Layout extends Component {
 state = {
    levelSelected:false,
    level:'',
-   cards:''
+   cards:'',
+   attemps:''
 }
 
 componentDidMount = async ( ) =>{
     const res = await fetch('https://memodev-b5134.firebaseio.com/cards.json')
     const data = await res.json()
-    console.log(data)
     if (data.length !== 0){
         //sort in another random order
         data.sort(Order);
@@ -38,14 +38,16 @@ componentDidMount = async ( ) =>{
 selectDefault = () =>{
     this.setState({
         levelSelected:true,
-        level:'medium'
+        level:'medium',
+        attemps:'10'
     })
 }
 
-selectDificultyHandler = (difficulty) =>{
+selectDificultyHandler = (difficulty, attemps) =>{
     this.setState({
         levelSelected:true,
         level: difficulty,
+        attemps: attemps
     })
 }
 
@@ -60,17 +62,17 @@ selectDificultyHandler = (difficulty) =>{
                             </Row>
                             <Row className={classes.Buttons}>
                                 <Col sm='12'>
-                                    <Button color="success" size="lg" block onClick={()=>this.selectDificultyHandler('Easy Mode')}>Easy Mode</Button>
+                                    <Button color="success" size="lg" block onClick={()=>this.selectDificultyHandler('Easy Mode', 20)}>Easy Mode</Button>
                                 </Col>
                             </Row>
                             <Row className={classes.Buttons}>
                                 <Col sm='12'>
-                                    <Button color="warning" size="lg" block onClick={()=>this.selectDificultyHandler('Medium')}>Medium</Button>
+                                    <Button color="warning" size="lg" block onClick={()=>this.selectDificultyHandler('Medium', 10)}>Medium</Button>
                                 </Col>
                             </Row>
                             <Row className={classes.Buttons}>
                                 <Col sm='12'>
-                                    <Button color="danger" size="lg" block onClick={()=>this.selectDificultyHandler('Hard Mode')}>Coder Expert!</Button>
+                                    <Button color="danger" size="lg" block onClick={()=>this.selectDificultyHandler('Hard Mode', 5)}>Coder Expert!</Button>
                                 </Col>
                             </Row>
                         </Modal>)

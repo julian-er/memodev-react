@@ -2,7 +2,7 @@ import React from 'react'
 import classes from './Toolbar.module.css'
 import Logo from '../UI/Logo'
 import NavigationItems from './NavigationItems'
-import { Row, Container } from 'reactstrap'
+import { Row } from 'reactstrap'
 //import DrawerToggle from '../UI/DrawerToggle'
 
 const Toolbar = (props) => {
