@@ -5,6 +5,8 @@ import classes from './Layout.module.css'
 import Modal from './Components/UI/Modal'
 import { Button, Col, Row, Container } from 'reactstrap';
 import CardContainer from './Components/Cards/CardsContainer'
+import Level from './Components/UI/Level'
+import Issues from './Components/UI/Issues'
 
 
 
@@ -15,7 +17,8 @@ state = {
    levelSelected:false,
    level:'',
    cards:'',
-   attemps:''
+   attemps:'',
+   issues:0
 }
 
 componentDidMount = async ( ) =>{
@@ -92,8 +95,11 @@ selectDificultyHandler = (difficulty, attemps) =>{
                 {selector}
                 <CardContainer cards={this.state.cards} className={classes.BackBlue} />
                 <Row>
-                    <Col>
-                        Puntos y dificultad
+                    <Col sm='6'>
+                        <Level level={this.state.level}></Level>
+                    </Col>
+                    <Col sm='6'>
+                        <Issues issues={this.state.issues}></Issues>
                     </Col>
                 </Row>
                 </Container>
