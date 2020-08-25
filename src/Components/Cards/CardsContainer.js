@@ -11,7 +11,7 @@ const cards = Object.keys(this.props.cards)
 .map(ingKey => {
     return (
         <Col sm='3' key={ingKey}>
-            <Card/>  
+            <Card loadImg={this.props.cards[ingKey].src} event={(e)=>console.log(e.target)}/>  
         </Col>
     
     )
