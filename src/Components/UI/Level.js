@@ -5,7 +5,7 @@ export default class Level extends Component {
     render() {
         return (
             <div className={classes.level}>
-                <h5>Errores : {this.props.level}</h5>
+                <h5>Level : {this.props.level}</h5>
             </div>
         )
     }

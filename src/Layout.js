@@ -17,9 +17,10 @@ state = {
    levelSelected:false,
    level:'',
    cards:'',
-   attemps:'',
+   attemps:null,
    issues:0,
    verifyCards:[],
+   matchs:0,
 }
 
 componentDidMount = async ( ) =>{
@@ -42,8 +43,8 @@ componentDidMount = async ( ) =>{
 selectDefault = () =>{
     this.setState({
         levelSelected:true,
-        level:'medium',
-        attemps:'10'
+        level:'Medium',
+        attemps:10
     })
 }
 
@@ -51,7 +52,9 @@ selectDificultyHandler = (difficulty, attemps) =>{
     this.setState({
         levelSelected:true,
         level: difficulty,
-        attemps: attemps
+        attemps: attemps,
+        issues:0,
+        matchs:0
     })
 }
 
@@ -61,13 +64,26 @@ setIssuesHandler = () =>{
     })
 }
 
+setMatchesHandler = () =>{
+    this.setState({
+        matchs: this.state.matchs + 1
+    })
+}
+
+changeLevelHandler = () =>{
+    this.setState({
+        levelSelected:!this.state.levelSelected
+    })
+}
+
+
     render() {
         let selector
         if(!this.state.levelSelected){
             selector = (<Modal show={!this.state.levelSelected} clicked={this.selectDefault}>
                             <Row>
                                 <Col sm='12'>
-                                    <h2>Chose your difficulty!</h2>
+                                    <h2 style={{textAlign:"center"}}>Chose your difficulty!</h2>
                                 </Col>
                             </Row>
                             <Row className={classes.Buttons}>
@@ -87,6 +103,40 @@ setIssuesHandler = () =>{
                             </Row>
                         </Modal>)
         }
+        let message
+        if(this.state.issues === this.state.attemps){
+            
+            message = (<Modal show={true} clicked={this.selectDefault}>
+                            <Row>
+                                <Col sm='12'>
+                                    <h2 style={{textAlign:"center"}}>You Lose! try again?</h2>
+                                </Col>
+                            </Row>
+                            <Row className={classes.Buttons}>
+                                <Col sm='12'>
+                                    <Button color="success" size="lg" block onClick={()=>window.location.reload(false)}>Retry!</Button>
+                                </Col>
+                            </Row>
+
+                        </Modal>)
+        }if(this.state.matchs === 8){
+            
+            message = (<Modal show={true} clicked={this.selectDefault}>
+                            <Row>
+                                <Col sm='12'>
+                                    <h2 style={{textAlign:"center"}}>You Win! try harder?</h2>
+                                </Col>
+                            </Row>
+                            <Row className={classes.Buttons}>
+                                <Col sm='12'>
+                                    <Button color="success" size="lg" block onClick={()=>window.location.reload(false)}>Retry!</Button>
+                                </Col>
+                            </Row>
+                            
+
+                        </Modal>)
+        }
+
 
         // add difficulty to title
         if(this.state.levelSelected){
@@ -97,10 +147,11 @@ setIssuesHandler = () =>{
 
         return (
             <Aux>
-                <Container fluid>
-                <Toolbar/>
+                <Container fluid className={classes.fluid}>
+                <Toolbar changeLevel={()=>this.changeLevelHandler()}/>
                 {selector}
-                <CardContainer cards={this.state.cards} className={classes.BackBlue} issues={()=>this.setIssuesHandler()}/>
+                {message}
+                <CardContainer cards={this.state.cards} issues={()=>this.setIssuesHandler()} matchs={()=>this.setMatchesHandler()}/>
                 <Row>
                     <Col sm='6'>
                         <Level level={this.state.level}></Level>

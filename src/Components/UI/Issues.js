@@ -5,7 +5,7 @@ export default class issues extends Component {
     render() {
         return (
             <div className={classes.issues}>
-                <h5>Errores : {this.props.issues}</h5>
+                <h5>Issues : {this.props.issues}</h5>
             </div>
         )
     }

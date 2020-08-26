@@ -3,8 +3,8 @@ import classes from './NavigationItem.module.css'
 
 const NavigationItem = (props) => {
     return (
-        <li className={classes.NavigationItem}>
-            <a href={props.link} className={props.active ? classes.active : null }>{props.children}</a>
+        <li className={classes.NavigationItem} style={{color:`${props.styles}`}}>
+            <a href={props.link} onClick={props.click} className={props.active ? classes.active : null }>{props.children}</a>
         </li>
     )
 }

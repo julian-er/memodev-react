@@ -1,17 +1,17 @@
 .divCard {
     background-image: url(../../Assets/img/cover.jpg);
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position:center;
-    width: 10rem;
-    height: 15rem;
+    width: 33.3%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     -webkit-box-shadow: 4px 6px 17px -4px rgba(0,0,0,0.75);
     -moz-box-shadow: 4px 6px 17px -4px rgba(0,0,0,0.75);
     box-shadow: 4px 6px 17px -4px rgba(0,0,0,0.75);
-    margin: 2rem 2rem;
+    margin: auto;
     border-radius: 1rem;
     padding: .5rem;
     position: relative;

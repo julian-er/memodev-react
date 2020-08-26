@@ -6,7 +6,7 @@ const NavigationItems = (props) => {
     return (
         <ul className={classes.NavigationItems}>
             <NavigationItem link="/" active>Play!</NavigationItem>
-            <NavigationItem link="/">Select difficulty</NavigationItem>
+            <NavigationItem Link="/" click={props.changeLevel} styles={'white'}>Change difficulty</NavigationItem>
         </ul>
     )
 }

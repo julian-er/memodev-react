@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'reactstrap'
 import Card from './Cards'
+import classes from './CardsContainer.module.css'
 
 export class Cards extends Component {
 state={
@@ -19,40 +20,55 @@ turnCardHandler = (e) =>{
                     compare : [...this.state.compare,{"target":e.target, "src":e.target.childNodes[0].src, "id":e.target.id}]
                 })
                 
-                setTimeout(() => {
-                try {if(this.state.compare[0].src === this.state.compare[1].src){
-                    
-                    console.log('Aca, conta el acierto')
+                
+                try {
+                    if(this.state.compare[0].src === e.target.childNodes[0].src){
+                        //match
+
+                        this.props.matchs()
 
                 }else{
-                    
-                    console.log('Aca, conta el Error!!')
+                    //don't match
+                setTimeout(() => {   
                     // turn cards
                     let firstCard = this.state.compare[0]
                     firstCard.target.style=''
                     firstCard.target.childNodes[0].style.display='none'
+                    //console.log(this.state.compare[1].target)
                     let secondCard = this.state.compare[1]
                     secondCard.target.style=''
                     secondCard.target.childNodes[0].style.display='none'
+
+                    //clear state    
+                    this.setState({
+                        compare:[]
+                    })
                     
                     //increase issue
                     this.props.issues()
 
-                    //return state array
-                    this.setState({
-                        compare : []
-                    }) 
-                    
+                }, 1000);
+
+                
 
                 } }catch(err){
                     console.log(err)
+                    console.log(this.state.compare)
                 }
                 
-                }, 1000);}catch{
+                
+            
+            
+               //return state array
+               
+            
+
+            }catch{
 
                     // prevent clicks 
 
                 }
+                
             }else{
                 e.target.style.backgroundImage ='none';
                 e.target.style.backgroundColor = 'white';
@@ -79,7 +95,7 @@ turnCardHandler = (e) =>{
 const cards = Object.keys(this.props.cards)
 .map(ingKey => {
     return (
-        <Col sm='3' key={ingKey} >
+        <Col sm='3' key={ingKey} className={classes.divCard}>
             <Card loadImg={this.props.cards[ingKey].src} event={(e)=>this.turnCardHandler(e)} idSelector={ingKey}/>  
         </Col>
     
@@ -87,9 +103,12 @@ const cards = Object.keys(this.props.cards)
 });
 
         return (
-                <Row>
+         
+                <Row className={classes.HCard}>
                 {cards}
                 </Row>
+            
+                
         )
     }
 }

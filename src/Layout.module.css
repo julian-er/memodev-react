@@ -4,8 +4,30 @@
 
 .BackBlue {
     background: #3B5C94;
+    height: 70%;
+    width: 100%;
 }
 
 .Buttons{
     padding: 2%;
+}
+
+html{
+    height: 100%;
+    width: 100%;
+}
+
+body{
+    height: 100%;
+    width: 100%;
+}
+
+#root{
+    height: 100%;
+    width: 100%;
+}
+
+.fluid{
+    height: 100%;
+    width: 100%;
 }

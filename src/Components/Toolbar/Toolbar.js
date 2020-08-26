@@ -8,13 +8,13 @@ import { Row } from 'reactstrap'
 const Toolbar = (props) => {
     return (
         
-                <Row>
+                <Row className={classes.ToolbarH}>
                     <header className={classes.Toolbar}>
                         <div className={classes.Logo}>
                             <Logo />
                         </div> 
                         <nav className={classes.DesktopOnly}>
-                            <NavigationItems />
+                            <NavigationItems changeLevel={props.changeLevel}/>
                         </nav>
                 </header>
                 </Row>
