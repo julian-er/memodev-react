@@ -18,11 +18,12 @@ state = {
    level:'',
    cards:'',
    attemps:'',
-   issues:0
+   issues:0,
+   verifyCards:[],
 }
 
 componentDidMount = async ( ) =>{
-    const res = await fetch('https://memodev-b5134.firebaseio.com/cards.json')
+    const res = await fetch('https://memodev-b5134.firebaseio.com/memo.json')
     const data = await res.json()
     if (data.length !== 0){
         //sort in another random order
