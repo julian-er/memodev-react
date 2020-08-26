@@ -55,6 +55,12 @@ selectDificultyHandler = (difficulty, attemps) =>{
     })
 }
 
+setIssuesHandler = () =>{
+    this.setState({
+        issues: this.state.issues + 1
+    })
+}
+
     render() {
         let selector
         if(!this.state.levelSelected){
@@ -94,7 +100,7 @@ selectDificultyHandler = (difficulty, attemps) =>{
                 <Container fluid>
                 <Toolbar/>
                 {selector}
-                <CardContainer cards={this.state.cards} className={classes.BackBlue} />
+                <CardContainer cards={this.state.cards} className={classes.BackBlue} issues={()=>this.setIssuesHandler()}/>
                 <Row>
                     <Col sm='6'>
                         <Level level={this.state.level}></Level>
